@@ -32,10 +32,14 @@ jobs:
         run: echo "hello"
 
       - name: env
-        run: echo ${{ toJson(env) }}
+        run: echo "$HOGE"
+        env:
+          HOGE: ${{ toJson(env) }}
 
       - name: github.env
-        run: echo ${{ toJson(github.env) }}
+        run: echo "$HOGE"
+        env:
+          HOGE: ${{ toJson(github.env) }}
 
       - name: $GITHUB_ENV
-        run: echo $GITHUB_ENV | jq .
+        run: echo "$GITHUB_ENV"
