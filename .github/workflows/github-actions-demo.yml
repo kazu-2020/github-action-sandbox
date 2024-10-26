@@ -13,4 +13,7 @@ jobs:
         run: echo ${{ env.NAME }}
 
       - name: test-2
+        run: echo ${{ env['NAME'] }}
+
+      - name: test-2
         run: echo $NAME
