@@ -18,7 +18,9 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: cat github.event_path
         run: cat ${{ github.event_path}}
-      - name: test
-        run: echo ${{ github.event }}
+      - name: Log GitHub Event
+        env:
+          GITHUB_EVENT: ${{ toJson(github.event) }}
+        run: echo "$GITHUB_EVENT"
       - name: I am "${{ github.actor }}"
         run: echo "hello"
