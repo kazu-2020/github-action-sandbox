@@ -19,6 +19,6 @@ jobs:
       - name: cat github.event_path
         run: cat ${{ github.event_path}}
       - name: test
-        run: cat ${{ github.event }}
-      - name: I am ${{ github.actor }}
+        run: echo ${{ github.event }}
+      - name: I am "${{ github.actor }}"
         run: echo "hello"
