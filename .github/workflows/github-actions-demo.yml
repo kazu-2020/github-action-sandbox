@@ -6,19 +6,13 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: test-1
-        run: echo "HOGE=${{ env.NAME }}" >> ${{ github.env }}
-        env:
-          NAME: 'matazou'
+      - uses: actions/github-script@v7
+        id: test-1
+        with:
+          script: |
+            const name = 'matazou';
+            console.log(`Hello, ${name}!`);
+            core.exportVariable('HOGE', name);
       - name: test-2
         run: |
           echo $HOGE
-          echo ${{ env.HOGE }}
-  Other:
-    runs-on: ubuntu-latest
-    needs: Explore-GitHub-Actions
-    steps:
-      - name: test-3
-        run: |
-          echo $HOGE
-          echo ${{ env.HOGE }}
