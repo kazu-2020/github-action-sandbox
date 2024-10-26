@@ -37,7 +37,7 @@ jobs:
           HOGE: ${{ toJson(env) }}
 
       - name: Show GITHUB_ENV variable
-        run: echo "$GITHUB_ENV"
+        run: cat "$GITHUB_ENV"
 
       - name: Display GITHUB_ENV path
-        run: echo "${{ github.env }}"
+        run: cat "${{ github.env }}"
