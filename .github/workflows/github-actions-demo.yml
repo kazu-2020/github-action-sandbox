@@ -31,13 +31,8 @@ jobs:
       # - name: I am $NAME
       #   run: echo "hello"
 
-      - name: env
-        run: echo "$HOGE"
-        env:
-          HOGE: ${{ toJson(env) }}
+      - name: test-1
+        run: echo ${{ env.NAME }}
 
-      - name: Show GITHUB_ENV variable
-        run: cat "$GITHUB_ENV"
-
-      - name: Display GITHUB_ENV path
-        run: cat "${{ github.env }}"
+      - name: test-2
+        run: echo ${{ github.env.NAME }}
