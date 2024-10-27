@@ -23,6 +23,6 @@ jobs:
     steps:
       - name: test3
         env:
-          SELECTED_COLOR: ${{ job.Explore-GitHub-Actions.outputs.SELECTED_COLOR }}
+          SELECTED_COLOR: ${{ needs.Explore-GitHub-Actions.outputs.SELECTED_COLOR }}
         run: |
           echo "The selected color is $SELECTED_COLOR"
