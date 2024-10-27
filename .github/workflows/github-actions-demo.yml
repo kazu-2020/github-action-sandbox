@@ -5,14 +5,23 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    outputs:
+      SELECTED_COLOR: ${{ steps.test1.outputs.SELECTED_COLOR }}
     steps:
-      - uses: actions/github-script@v7
-        id: test-1
-        with:
-          script: |
-            const name = 'matazou';
-            console.log(`Hello, ${name}!`);
-            core.exportVariable('HOGE', name);
-      - name: test-2
+      - name: test1
         run: |
-          echo $HOGE
+          echo echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+      - name: test2
+        env:
+          SELECTED_COLOR: ${{ steps.test1.outputs.SELECTED_COLOR }}
+        run: |
+          echo "The selected color is $SELECTED_COLOR"
+  Other:
+    runs-on: ubuntu-latest
+    needs: Explore-GitHub-Actions
+    steps:
+      - name: test3
+        env:
+          SELECTED_COLOR: ${{ job.Explore-GitHub-Actions.outputs.SELECTED_COLOR }}
+        run: |
+          echo "The selected color is $SELECTED_COLOR"
