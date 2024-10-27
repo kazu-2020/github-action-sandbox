@@ -9,6 +9,7 @@ jobs:
       SELECTED_COLOR: ${{ steps.test1.outputs.SELECTED_COLOR }}
     steps:
       - name: test1
+        id: test1
         run: |
           echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
       - name: test2
